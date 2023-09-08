@@ -23,7 +23,7 @@ jobs:
       run: |
         # Assuming your Playwright HTML report is generated in a folder named 'report'
         mkdir -p ${{ github.workspace }}/docs  # Create a 'docs' folder if it doesn't exist
-        cp -r playwright-report/* ${{ github.workspace }}/docs  # Copy the report to 'docs' folder
+        cp -r report/* ${{ github.workspace }}/docs  # Copy the report to 'docs' folder
       # Commit and push the changes to a GitHub Pages branch (e.g., gh-pages)
       # Replace <username> with your GitHub username and <repository> with your repo name
       - name: Commit and Push HTML Report to GitHub Pages
@@ -35,9 +35,8 @@ jobs:
           git commit -m "Publish Playwright HTML report"
           git push origin gh-pages
 
-    - uses: actions/upload-artifact@v3
-      if: always()
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs  # Change this if you're using a different folder
