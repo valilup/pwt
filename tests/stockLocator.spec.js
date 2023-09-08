@@ -1,7 +1,6 @@
 import {StockLocatorDetailsPage} from '../pages/stockLocatorDetailsPage';
 import {ShopPage} from '../pages/shopPage';
 import {test, expect} from '@playwright/test';
-
 const dataSet = require('../data/stockLocatorUrl.json');
 
 dataSet.forEach(data =>{
@@ -28,7 +27,7 @@ dataSet.forEach(data =>{
         // open a new tab
         await stockLocatorDetailsPage.getOfferButton.click();
         const newPage = await pagePromise;
-        await newPage.waitForLoadState();
+        await newPage.waitForLoadState("networkidle");
 
         // create a shopPage object
         const shopPage = new ShopPage(newPage);
@@ -41,6 +40,5 @@ dataSet.forEach(data =>{
         expect(shopCarNameAndModel).toContain(carName);
         // expect(shopCarNameAndModel).toContain(carModel);
         expect(shopCarPrice).toBe(carPrice.trim());
-
     });
 });
