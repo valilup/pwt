@@ -1,9 +1,9 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master]
+    branches: [ main, master ]
   pull_request:
-    branches: [main, master]
+    branches: [ main, master ]
 jobs:
   test:
     timeout-minutes: 60
@@ -19,24 +19,18 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
-    - name: Publish HTML Report
-      run: |
-        # Assuming your Playwright HTML report is generated in a folder named 'report'
-        mkdir -p ${{ github.workspace }}/docs  # Create a 'docs' folder if it doesn't exist
-        cp -r report/* ${{ github.workspace }}/docs  # Copy the report to 'docs' folder
-      # Commit and push the changes to a GitHub Pages branch (e.g., gh-pages)
-      # Replace <username> with your GitHub username and <repository> with your repo name
-      - name: Commit and Push HTML Report to GitHub Pages
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git checkout -b gh-pages
-          git add docs/
-          git commit -m "Publish Playwright HTML report"
-          git push origin gh-pages
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
+    - uses: actions/upload-artifact@v3
+      if: always()
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs  # Change this if you're using a different folder
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: playwright-report/
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
