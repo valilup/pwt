@@ -27,6 +27,13 @@ jobs:
         retention-days: 30
     - name: List directory contents
       run: ls -R playwright-report/
+    - name: Show path
+      run: pwd
+    - name: Create playwright-report directory
+      run: mkdir playwright-report
+    - name: Move generated files to playwright-report
+      run: mv playwright-report/ playwright-report/
+
   deploy:
     needs: [ test ]
     environment:
