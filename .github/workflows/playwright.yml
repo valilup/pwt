@@ -25,6 +25,8 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    - name: List directory contents
+      run: ls -R playwright-report/
   deploy:
     needs: [ test ]
     environment:
