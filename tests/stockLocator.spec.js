@@ -2,7 +2,7 @@ import {StockLocatorDetailsPage} from '../pages/stockLocatorDetailsPage';
 import {ShopPage} from '../pages/shopPage';
 import {test, expect} from '@playwright/test';
 
-const dataSet = require('../data/stockLocatorUrl.json');
+const dataSet = require('../data/stockLocatorUrl1.json');
 
 dataSet.forEach(data => {
     test(`Stock locator and shop name, model and price should be the same for ${data.carName} car, test ${data.tc}`, async ({page, context}) => {
