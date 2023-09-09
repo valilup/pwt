@@ -55,14 +55,13 @@ jobs:
         with:
           name: playwright-report
 
-      - name: Deploy Test Report to GitHub Pages
-        run: |
-          mkdir -p docs
-          cp -r playwright-report/* docs/
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create docs directory
+        run: mkdir -p docs
 
-      - name: Commit and Push Test Report
+      - name: Copy Test Report to docs directory
+        run: cp -r playwright-report/. docs/
+
+      - name: Deploy Test Report to GitHub Pages
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
@@ -70,3 +69,5 @@ jobs:
           git add docs/
           git commit -m "Update Playwright test report [skip ci]"
           git push origin $GITHUB_REF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
