@@ -59,7 +59,7 @@ jobs:
         run: mkdir -p docs
 
       - name: Copy Test Report to docs directory
-        run: cp -r /home/runner/work/pwt/pwt/playwright-report/. docs/
+        run: cp -r ${{ github.workspace }}/playwright-report/. docs/
 
       - name: Deploy Test Report to GitHub Pages
         run: |
