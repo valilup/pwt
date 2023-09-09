@@ -29,10 +29,10 @@ jobs:
       run: ls -R playwright-report/
     - name: Show path
       run: pwd
-    - name: Create playwright-report directory
-      run: mkdir playwright-report
-    - name: Move generated files to playwright-report
-      run: mv playwright-report/ playwright-report/
+    - name: Move outside of the directory
+      run: cd..
+    - name: List directory
+      run: ls -a
 
   deploy:
     needs: [ test ]
