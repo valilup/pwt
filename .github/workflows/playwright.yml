@@ -62,6 +62,9 @@ jobs:
         with:
           name: reports
 
+      - name: Check artefacts
+        run: ls -a
+
       - name: Create docs directory
         run: mkdir -p docs
 
