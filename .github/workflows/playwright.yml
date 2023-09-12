@@ -30,8 +30,5 @@ jobs:
       - name: Run Playwright Tests
         run: npx playwright test
 
-      - name: Archive Playwright test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: playwright-reports
-          path: play
+      - name: Check artefacts
+        run: ls -a
