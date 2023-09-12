@@ -1,4 +1,5 @@
 name: Playwright Tests and Deploy Report
+
 on:
   push:
     branches:
@@ -36,19 +37,44 @@ jobs:
           echo "change directory to playwright-report"
           cd playwright-report
           ls -a 
-          |
+
       - name: Upload Playwright test report
-        uses: actions/upload-artifact@v2
         if: always()
+        uses: actions/upload-artifact@v2
         with:
           name: reports
           path: playwright-report/
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        user: actions/upload-pages-artifact@v2
-        with:
-          path: playwright-report/
+
+  deploy:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Deploy to GitHub Pages
-        id: deployment
-        user: actions/deploy-pages@v2
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Download Test Report Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: reports
+
+      - name: Create docs directory
+        run: mkdir -p docs
+
+      - name: Copy Test Report to docs directory
+        run: cp -r $GITHUB_WORKSPACE/reports/. docs/
+
+      - name: Deploy Test Report to GitHub Pages
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git checkout $GITHUB_REF
+          git add docs/
+          git commit -m "Update Playwright test report [skip ci]"
+          git push origin $GITHUB_REF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
