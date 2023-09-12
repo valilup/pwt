@@ -44,7 +44,7 @@ dataSet.forEach(data => {
         // check the name and model and price are the same as in stock locator details page
         expect(shopCarNameAndModel).toContain(carName);
         if (hasCarModel) {
-            expect(shopCarNameAndModel).toContain(carModel);
+            expect(shopCarNameAndModel).toContain("carModel");
         }
         expect(shopCarPrice).toBe(carPrice.trim());
     });

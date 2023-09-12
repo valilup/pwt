@@ -37,6 +37,7 @@ jobs:
           echo "change directory to playwright-report"
           cd playwright-report
           ls -a 
+          |
 
       - name: Upload Playwright test report
         if: always()
