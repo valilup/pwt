@@ -69,7 +69,7 @@ jobs:
         run: mkdir -p docs
 
       - name: Copy Test Report to docs directory
-        run: cp -r $GITHUB_WORKSPACE/reports/. docs/
+        run: cp -r $GITHUB_WORKSPACE/index.html docs/
 
       - name: Deploy Test Report to GitHub Pages
         run: |
