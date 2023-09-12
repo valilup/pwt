@@ -57,13 +57,8 @@ jobs:
       - name: Copy Test Report to docs directory
         run: cp -r $GITHUB_WORKSPACE/playwright-report/. docs/
 
-      - name: Deploy Test Report to GitHub Pages
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git checkout $GITHUB_REF
-          git add docs/
-          git commit -m "Update Playwright test report [skip ci]"
-          git push origin $GITHUB_REF
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
