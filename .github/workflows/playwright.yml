@@ -31,7 +31,11 @@ jobs:
         run: npx playwright test
 
       - name: Check artefacts
-        run: ls -a
+        run: |
+          ls -a
+          echo "change directory to playwright-report"
+          cd playwright-report
+          ls -a 
 
       - name: Upload Playwright test report
         uses: actions/upload-artifact@v2
