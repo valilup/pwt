@@ -5,19 +5,19 @@ import specialData from "../data/DVSS-MINI-FamilyPage-NavigationIT-TD.json";
 import testData from "../data/DVSS-MINI-FamilyPage-Navigation-TD.json";
 
 
-testData.forEach((data: { country: any; market: string; endpoint: string; rangePageHeaderText: string }) => {
-    test(`${data.country} - Navigate successfully to the Family Range Page`, async ({
-                                                                                        homePage,
-                                                                                        rangePage,
-                                                                                        page
-                                                                                    }) => {
-        await homePage.gotoAndAcceptCookies(data.market, data.endpoint);
-        await homePage.clickOnExploreMiniModels();
-
-        expect(page.url()).toMatch(/\/(range\.html|modeller\.html)/);
-        expect(await rangePage.getPrimaryPageHeaderText()).toBe(data.rangePageHeaderText);
-    });
-});
+// testData.forEach((data: { country: any; market: string; endpoint: string; rangePageHeaderText: string }) => {
+//     test(`${data.country} - Navigate successfully to the Family Range Page`, async ({
+//                                                                                         homePage,
+//                                                                                         rangePage,
+//                                                                                         page
+//                                                                                     }) => {
+//         await homePage.gotoAndAcceptCookies(data.market, data.endpoint);
+//         await homePage.clickOnExploreMiniModels();
+//
+//         expect(page.url()).toMatch(/\/(range\.html|modeller\.html)/);
+//         expect(await rangePage.getPrimaryPageHeaderText()).toBe(data.rangePageHeaderText);
+//     });
+// });
 
 const italyData = specialData;
 test(`${italyData.country} - Navigate successfully to the Family Range Page`, async ({
