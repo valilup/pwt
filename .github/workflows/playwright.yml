@@ -13,6 +13,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      QA_ENV_AUTH_CREDENTIALS: ${{secrets.QA_ENV_AUTH_CREDENTIALS}}
+      CON_QX_USER: ${{secrets.CON_QX_USER}}
+      CON_QX_PASS: ${{secrets.BASE_URL}}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
