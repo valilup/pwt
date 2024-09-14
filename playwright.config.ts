@@ -19,20 +19,7 @@ export default defineConfig({
     timeout: 60 * 1000,
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
-        trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry',
-        video: process.env.CI ? 'retain-on-failure' : 'off',
-        // proxy: !!process.env.SELENIUMBOX_ENABLED ? { server: 'proxy.ccc-ng-1.eu-central-1.aws.cloud.bmw:8080' } : undefined,
-        // connectOptions: !!process.env.SELENIUMBOX_ENABLED ? {
-        //   wsEndpoint: `wss://seleniumbox.bmwgroup.net:443/e34/api/ws/playwright/chrome?playwright=1.44.0&token=${process.env.SELENIUMBOX_TOKEN}&video=false&testName=SUM`
-        // } : undefined
-        proxy: process.env.CI ? {
-                server: 'proxy.ccc-ng-1.eu-central-1.aws.cloud.bmw:8080',
-                bypass: '.bmwgroup.net'
-            } // <- bypass all BMW internal websites (comma-separated list)
-            : undefined, // <- use proxy for SeleniumBox to access websites
-        connectOptions: process.env.CI ? {
-            wsEndpoint: `wss://seleniumbox.bmwgroup.net:443/e34/api/ws/playwright/chrome?playwright=1.44.0&token=d995b148-b194-4f&video=false&testName=SUM`
-        } : undefined // <- configure endpoint to use SeleniumBox
+        trace: 'on-first-retry',
     },
 
     /* Configure projects for major browsers */
