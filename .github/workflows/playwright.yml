@@ -1,88 +1,59 @@
-name: Playwright Tests and Deploy Report
-
+name: Playwright Tests
 on:
   push:
     branches:
       - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   test:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
       QA_ENV_AUTH_CREDENTIALS: ${{secrets.QA_ENV_AUTH_CREDENTIALS}}
       CON_QX_USER: ${{secrets.CON_QX_USER}}
       CON_QX_PASS: ${{secrets.BASE_URL}}
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 21
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright Browsers
+      - name: Install Playwright
         run: npx playwright install
 
-      - name: Run Playwright Tests
+      - name: Run Playwright tests
         run: npx playwright test
 
-      - name: Check artefacts
-        run: |
-          ls -a
-          echo "change directory to playwright-report"
-          cd playwright-report
-          ls -a 
-          |
-
-      - name: Upload Playwright test report
+      - uses: actions/upload-artifact@v3
         if: always()
-        uses: actions/upload-artifact@v2
         with:
-          name: reports
+          name: playwright-report
           path: playwright-report/
+          retention-days: 30
 
-  deploy:
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+        if: always()
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        if: always()
+        with:
+          # Upload entire repository
+          path: playwright-report/
       - name: Deploy to GitHub Pages
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Download Test Report Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: reports
-
-      - name: Check artefacts
-        run: ls -a
-
-      - name: Create docs directory
-        run: mkdir -p docs
-
-      - name: Copy Test Report to docs directory
-        run: cp -r $GITHUB_WORKSPACE/index.html docs/
-
-      - name: Deploy Test Report to GitHub Pages
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git checkout $GITHUB_REF
-          git add docs/
-          git commit -m "Update Playwright test report [skip ci]"
-          git push origin $GITHUB_REF
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: deployment
+        uses: actions/deploy-pages@v1
+        if: always()
