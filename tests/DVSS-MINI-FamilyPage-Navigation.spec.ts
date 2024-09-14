@@ -19,18 +19,18 @@ import testData from "../data/DVSS-MINI-FamilyPage-Navigation-TD.json";
 //     });
 // });
 
-// const italyData = specialData;
-// test(`${italyData.country} - Navigate successfully to the Family Range Page`, async ({
-//                                                                                          homePage,
-//                                                                                          rangePage,
-//                                                                                          page
-//                                                                                      }) => {
-//     await homePage.gotoAndAcceptCookies(italyData.market, italyData.endpoint);
-//     await homePage.clickOnExploreMiniModelsItalyButton();
-//
-//     expect(page.url()).toContain("/change-vehicle.html");
-//     expect(await rangePage.getPrimaryPageHeaderText()).toBe(italyData.rangePageHeaderText);
-// });
+const italyData = specialData;
+test(`${italyData.country} - Navigate successfully to the Family Range Page`, async ({
+                                                                                         homePage,
+                                                                                         rangePage,
+                                                                                         page
+                                                                                     }) => {
+    await homePage.gotoAndAcceptCookies(italyData.market, italyData.endpoint);
+    await homePage.clickOnExploreMiniModelsItalyButton();
+
+    expect(page.url()).toContain("/change-vehicle.html");
+    expect(await rangePage.getPrimaryPageHeaderText()).toBe(italyData.rangePageHeaderText);
+});
 
 test("google test ", async({page})=>{
     await page.goto("https://www.google.com/search?q=");
