@@ -32,7 +32,7 @@ test(`${italyData.country} - Navigate successfully to the Family Range Page`, as
     expect(await rangePage.getPrimaryPageHeaderText()).toBe(italyData.rangePageHeaderText);
 });
 
-test.only("google test ", async({page})=>{
+test("google test ", async({page})=>{
     await page.goto("https://www.google.com/search?q=");
 
     await page.locator("[id=\"L2AGLb\"] div").click();
