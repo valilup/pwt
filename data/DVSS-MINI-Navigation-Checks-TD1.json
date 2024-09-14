@@ -1,0 +1,14 @@
+[
+  {"country": "UK", "market": "co-uk", "endpoint": "en-gb/mymini/garage/wishlist", "user": "dvs_uk_mini_01@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "FR", "market": "fr", "endpoint": "fr-fr/mymini/garage/wishlist", "user": "dvs_fr_mini_01@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "SE", "market": "se", "endpoint": "sv-se/mymini/garage/wishlist", "user": "dvs_se_mini_01@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "PL", "market": "com-pl", "endpoint": "pl-pl/mymini/garage/wishlist", "user": "wies.krol@byom.de", "pass": "Plb597075986#"},
+  {"country": "NO", "market": "no", "endpoint": "no-no/mymini/garage/wishlist", "user": "dvs_no_mini_03@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "LU", "market": "lu", "endpoint": "fr-lu/mymini/garage/wishlist", "user": "dvs_lu_mini_01@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "IT", "market": "it", "endpoint": "it-it/mymini/garage/wishlist", "user": "dvs_it_mini_03@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "IE", "market": "ie", "endpoint": "en-ie/mymini/garage/wishlist", "user": "dvs_ie_mini_01@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "DE", "market": "de", "endpoint": "de-de/mymini/garage/wishlist", "user": "dvs_de_mini_02@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "BE", "market": "be", "endpoint": "fr-be/mymini/garage/wishlist", "user": "dvs_be_mini_01@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "AT", "market": "at", "endpoint": "de-at/mymini/garage/wishlist", "user": "dvs_at_mini_01@bip-test.de", "pass": "Dvs1234567890*"},
+  {"country": "FI", "market": "fi", "endpoint": "fi-fi/mymini/garage/wishlist", "user": "dvs_fi_mini_03@bip-test.de", "pass": "Dvs1234567890*"}
+]

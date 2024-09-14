@@ -1,0 +1,13 @@
+[
+  {"country": "FI", "market": "fi", "endpoint": "", "rangePageHeaderText": "MINI RANGE."},
+  {"country": "NO", "market": "no", "endpoint": "", "rangePageHeaderText": "MINI RANGE."},
+  {"country": "LU", "market": "lu", "endpoint": "fr_LU/home.html", "rangePageHeaderText": "LA GAMME MINI."},
+  {"country": "PL", "market": "com-pl", "endpoint": "", "rangePageHeaderText": "RODZINĘ MINI."},
+  {"country": "DE", "market": "de", "endpoint": "", "rangePageHeaderText": "MINI Modelle"},
+  {"country": "AT", "market": "at", "endpoint": "", "rangePageHeaderText": "MINI FAMILIE."},
+  {"country": "BE", "market": "be", "endpoint": "fr_BE/home.html", "rangePageHeaderText": "LA GAMME MINI."},
+  {"country": "IE", "market": "ie", "endpoint": "", "rangePageHeaderText": "MINI RANGE."},
+  {"country": "UK", "market": "co-uk", "endpoint": "", "rangePageHeaderText": "MINI RANGE."},
+  {"country": "FR", "market": "fr", "endpoint": "", "rangePageHeaderText": "LA GAMME MINI."},
+  {"country": "SE", "market": "se", "endpoint": "", "rangePageHeaderText": "MINI UTBUDET.","_comment": "The url contains modeller instead of range"}
+]
